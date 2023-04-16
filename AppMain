@@ -126,3 +126,11 @@ const getInitiatives = async (req, res) => {
     res.status(500).send('Server Error');
   }
 };
+
+##Donation Processing
+
+const processDonation = async (req, res) => {
+  const { amount, initiativeId } = req.body;
+
+  try {
+    const initiative

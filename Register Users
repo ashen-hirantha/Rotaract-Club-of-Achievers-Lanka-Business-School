@@ -110,3 +110,19 @@ const createInitiative = async (req, res) => {
     res.status(500).send('Server Error');
   }
 };
+
+##Get Initiaitves
+
+const getInitiatives = async (req, res) => {
+  try {
+    const initiatives = await Initiative.find().populate(
+      'charitableOrganization',
+      'name'
+    );
+
+    res.json(initiatives);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+};

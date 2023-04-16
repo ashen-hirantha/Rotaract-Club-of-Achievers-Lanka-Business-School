@@ -86,3 +86,27 @@ const login = async (req, res) => {
     res.status(500).send('Server Error');
   }
 };
+
+##Creating Initiatives
+
+const createInitiative = async (req, res) => {
+  const { title, description, images, donationGoal, timeframe } = req.body;
+
+  try {
+    const initiative = new Initiative({
+      title,
+      description,
+      images,
+      donationGoal,
+      timeframe,
+      charitableOrganization: req.user.id,
+    });
+
+    await initiative.save();
+
+    res.json(initiative);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+};
